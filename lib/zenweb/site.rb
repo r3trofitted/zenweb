@@ -220,7 +220,7 @@ module Zenweb
     end
 
     def self.binary_files
-      @binary_files ||= %w[png jpg gif eot svg ttf woff2? ico pdf m4a t?gz]
+      @binary_files ||= %w[webp png jpe?g gif eot svg ttf woff2? ico pdf m4a t?gz]
     end
 
     def self.text_files
