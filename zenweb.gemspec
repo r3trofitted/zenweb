@@ -1,5 +1,5 @@
 Gem::Specification.new do |s|
-  s.name        = "ZenWeb"
+  s.name        = "zenweb"
   s.version     = "3.11.0"
   s.summary     = "A set of classes/tools for organizing and formating a website."
   s.description = <<~TXT
