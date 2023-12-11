@@ -39,13 +39,25 @@ class Zenweb::Page
     require "kramdown-syntax-coderay"
     require "coderay/zenweb_extensions"
 
-    config = KRAMDOWN_CONFIG.dup
+    config = kramdown_config
     if no_line_numbers then
       config[:syntax_highlighter_opts] = config[:syntax_highlighter_opts].dup
       config[:syntax_highlighter_opts][:line_numbers] = nil
     end
 
     Kramdown::Document.new(content, config).to_html
+  end
+  
+  def kramdown_config
+    local_config = config.key?(:kramdown) ? config[:kramdown] : {}
+    
+    KRAMDOWN_CONFIG.dup.merge(local_config) do |key, old, new|
+      if old.respond_to?(:merge) && new.kind_of?(Hash)
+        old.merge(new)
+      else
+        new
+      end
+    end
   end
 
   module MarkdownHelpers
